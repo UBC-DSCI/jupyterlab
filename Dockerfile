@@ -3,9 +3,8 @@ FROM continuumio/miniconda3
 # Install Jupyter, JupterLab, R & the IRkernel
 RUN conda install -y --quiet \
     jupyter \
-    jupyterlab \
-    nodejs \
-    r-base \
+    jupyterlab=3.* \
+    r-base=4.1.* \
     r-irkernel
 
 # Install JupyterLab Git Extension
@@ -16,9 +15,6 @@ RUN mkdir -p /opt/notebooks
 
 # Make port 8888 available for JupyterLab
 EXPOSE 8888
-
-# Change to root user to do some installation and configurations
-USER root
 
 # Install Git, the nano-tiny text editor and less (needed for R help)
 RUN apt-get update --yes && \
@@ -33,9 +29,6 @@ COPY start-notebook.sh /usr/local/bin/
 # Change permission of startup script and execute it
 RUN chmod +x /usr/local/bin/start-notebook.sh
 ENTRYPOINT ["/usr/local/bin/start-notebook.sh"]
-
-# Switch to Jupyter user
-USER "1000"
 
 # Switch to staring in directory where volumes will be mounted
 WORKDIR "/opt/notebooks"
