@@ -10,9 +10,6 @@ RUN conda install --yes --quiet --channel conda-forge \
 # Install JupyterLab Git Extension
 RUN pip install jupyterlab-git
 
-# change to root user
-USER root
-
 # Create working directory for mounting volumes
 RUN mkdir -p /opt/notebooks
 
