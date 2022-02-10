@@ -1,15 +1,16 @@
 FROM continuumio/miniconda3
 
 # Install Jupyter, JupterLab, R & the IRkernel
-RUN conda install --yes --quiet -c conda-forge \
+RUN conda install --yes --quiet --channel conda-forge \
     jupyter \
     jupyterlab \
-    r-base \
+    r-base=4.1.1 \
     r-irkernel
 
 # Install JupyterLab Git Extension
 RUN pip install jupyterlab-git
 
+# change to root user
 USER root
 
 # Create working directory for mounting volumes
