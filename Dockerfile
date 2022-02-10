@@ -1,7 +1,7 @@
 FROM continuumio/miniconda3
 
 # Install Jupyter, JupterLab, R & the IRkernel
-RUN conda install --yes --quiet --channel conda-forge \
+RUN conda install --yes --quiet -c conda-forge \
     jupyter \
     jupyterlab \
     r-base \
@@ -10,20 +10,20 @@ RUN conda install --yes --quiet --channel conda-forge \
 # Install JupyterLab Git Extension
 RUN pip install jupyterlab-git
 
+USER root
+
 # Create working directory for mounting volumes
 RUN mkdir -p /opt/notebooks
 
 # Make port 8888 available for JupyterLab
 EXPOSE 8888
 
-USER root
-
 # Install Git, the nano-tiny text editor and less (needed for R help)
 RUN apt-get update --yes && \
     apt-get install --yes --no-install-recommends \
-    git
-    #nano-tiny \
-    #less
+    git \
+    nano-tiny \
+    less
 
 # Copy JupyterLab start-up script into container
 COPY start-notebook.sh /usr/local/bin/
