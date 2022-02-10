@@ -1,10 +1,10 @@
 FROM continuumio/miniconda3
 
 # Install Jupyter, JupterLab, R & the IRkernel
-RUN conda install -y --quiet \
+RUN conda install --yes --quiet --channel conda-forge \
     jupyter \
-    jupyterlab=3.* \
-    r-base=4.1.* \
+    jupyterlab \
+    r-base \
     r-irkernel
 
 # Install JupyterLab Git Extension
