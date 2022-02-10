@@ -16,6 +16,8 @@ RUN mkdir -p /opt/notebooks
 # Make port 8888 available for JupyterLab
 EXPOSE 8888
 
+USER root
+
 # Install Git, the nano-tiny text editor and less (needed for R help)
 RUN apt-get update --yes && \
     apt-get install --yes --no-install-recommends \
