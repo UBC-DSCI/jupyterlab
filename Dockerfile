@@ -28,7 +28,7 @@ COPY start-notebook.sh /usr/local/bin/
 
 # Change permission of startup script and execute it
 RUN chmod +x /usr/local/bin/start-notebook.sh
-ENTRYPOINT ["/usr/local/bin/start-notebook.sh"]
+CMD ["/usr/local/bin/start-notebook.sh"]
 
 # Switch to staring in directory where volumes will be mounted
 WORKDIR "/opt/notebooks"
